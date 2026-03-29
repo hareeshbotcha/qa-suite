@@ -1,7 +1,7 @@
 @main_feed
 Feature: Action Bar and Actions
 
-   quick-access navigation panel that includes actions like Join Live, Schedule, Recordings, Exam, Invite, Groups, Attend In-Person, Gita Mission Guidelines, and Help, allowing users to easily access sessions, activities, and support features.
+   A quick-access navigation panel that includes actions like Join Live, Schedule, Recordings, Exam, Invite, Groups, Attend In-Person, Gita Mission Guidelines, and Help, allowing users to easily access sessions, activities, and support features.
 Superman:
       Superman should accesses the Action Bar and seamlessly performs all actions—joining live sessions, scheduling and viewing recordings, attempting exams, inviting others, engaging in groups, checking in-person events, reading guidelines, and accessing help—without any delays or errors.
       Superman should be able to load All features instantly, navigate correctly, and enable the user to complete tasks efficiently in a smooth end-to-end experience.
@@ -76,19 +76,124 @@ Macro:
     Given User is on Schedule page
     When User selects the next month arrow twice on calendar
     Then Only next month calendar should be visible.
-  Scenario: Open recordings page
+ Scenario: Navigate to Recordings page
     Given User is on Main Page
-    When User clicks Recordings
-    Then Recordings page should open
-  Scenario: Play recording
-    Given User selects recording
-    When Page loads
-    Then Video should autoplay
-    And Default quality should be 480p
-  Scenario: Resume recording
-    Given Partially watched video
-    When User reopens recording
-    Then Video should resume from last position
+    When User clicks on Recordings option
+    Then User should be navigated to Recordings page
+    And English Sessions and Hindi Sessions sections should be visible
+  Scenario: View English Sessions recordings
+    Given User is on Recordings page
+    When User clicks on English Sessions dropdown
+    Then English Sessions recordings should be displayed
+    And Continue Watching option should be visible for partially watched videos
+  Scenario: View Hindi Sessions recordings
+    Given User is on Recordings page
+    When User clicks on Hindi Sessions dropdown
+    Then Hindi Sessions recordings should be displayed
+  Scenario: Open English session recording
+    Given English Sessions recordings are displayed
+    When User clicks on any English Session drop down
+    Then Chapters dropdown should be visible
+  Scenario: View chapters and verses
+    Given User is on Recording page
+    When User clicks on Chapters dropdown
+    Then List of verse recordings should be displayed
+    And All verses should belong to selected chapter
+  Scenario: Play verse recording
+    Given User selects a verse recording
+    When Recording page loads
+    Then Recording should start playing
+    And Playback should start automatically
+  Scenario: Resume partially watched recording
+    Given User has partially watched a recording
+    When User opens the same recording
+    Then Video should resume from last watched time
+    And Progress should be maintained
+  Scenario: Display progress indicator
+    Given Recording is partially watched
+    When User views recording list
+    Then Circular progress indicator should be visible
+    And Percentage watched should be displayed
+  Scenario: Recording player controls visibility
+    Given Recording is playing
+    When User is on Recording page
+    Then Play, Next, Fast Forward and Fast Backward buttons should be visible
+    And Controls should function correctly
+  Scenario: Open video quality settings
+    Given Recording is playing
+    When User clicks on Settings icon
+    Then Bottom sheet should open
+    And List of video resolutions should be displayed
+  Scenario: Default video quality
+    Given User opens a recording
+    When Video starts playing
+    Then Default resolution should be 480p
+    And Video should play without buffering
+  Scenario: Back navigation with mini player
+    Given Recording is playing
+    When User clicks back button
+    Then User should be navigated to Recordings page
+    And Video should be minimized to bottom left corner
+  Scenario: Mini player controls 
+    Given Video is minimized
+    When Mini player is visible
+    Then Close, Play/Pause, Forward 10 sec and Backward 10 sec buttons should be visible
+    And Controls should work correctly
+  Scenario: Recording page content validation
+    Given User is on Recording page
+    When Page is loaded
+    Then Session name and time should be displayed
+    And Shlok and meaning should be visible
+    And Main video and Q&A video options should be available
+  Scenario: Read more and show less
+    Given Recording description contains long text
+    When User views description
+    Then Read More option should be visible
+    And On clicking Read More full content should expand
+  Scenario: Download video from recording page
+    Given User is on Recording page
+    When User clicks on Download option
+    Then Bottom sheet with resolutions should appear
+    And User should be able to select resolution
+  Scenario: Download selected resolution
+    Given User selects resolution
+    When User clicks Download
+    Then Video should start downloading
+    And Video should be visible in My Downloads page
+  Scenario: Maximize and minimize player
+    Given Video is playing
+    When User clicks minimize or maximize button
+    Then Player should resize accordingly
+    And Playback should not be interrupted
+  Scenario: Video type indication
+    Given Recording page is open
+    When Video is playing
+    Then Indicator icon should show whether it is Main or Q&A video
+    And Indicator should update on switching video
+  Scenario: Seek bar functionality 
+    Given Video is playing
+    When User drags scroll bar
+    Then Video should move forward or backward
+    And Playback should continue from selected point
+  Scenario: Video duration and timing display
+    Given Video is playing
+    When User views player
+    Then Total duration should be visible
+    And Current playback time should be displayed
+  Scenario: Language-based translation
+    Given User selects Hindi or English session
+    When Recording is opened
+    Then Shlok translation should match selected language
+    And Content should be displayed correctly
+  Scenario: Video recording is not avialable
+    Given Recording file is not uploaded for a verse.
+    When User tries to play recording
+    Then Message "Recording for this session is not available yet" should be displayed in bottom sheet
+  Scenario: Rapid navigation between recordings
+    Given User is on recording page
+    When User switches recordings quickly
+    Then Only selected recording should play
+    And App should not crash  
   Scenario: Play video till end 
     Given User watches full video
     When Video reaches end
@@ -192,7 +297,7 @@ Macro:
     Given Download is in progress
     When User cancels download
     Then Download should stop
-    And Partial file should be removed
+    And Partial file should be removed    
 
 Sanity:
 

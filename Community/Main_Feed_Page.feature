@@ -1,5 +1,5 @@
 @main_feed
-Feature: Post List and Details
+Feature: Main feed
 
     This feature ensures users can view community posts and interact with them by adding emojis, comments, bookmarks, and shares.
     It verifies community-based filtering, visibility of pinned and View All posts, and proper display of post details, media, hashtags, and user status tags.
