@@ -1,82 +1,14 @@
-@main_feed
-Feature: Action Bar and Actions
+@actions_bar
+Feature: Recordings
 
-   A quick-access navigation panel that includes actions like Join Live, Schedule, Recordings, Exam, Invite, Groups, Attend In-Person, Gita Mission Guidelines, and Help, allowing users to easily access sessions, activities, and support features.
+   Validates the Recordings feature including session selection, playback controls, progress tracking, downloads, and seamless navigation with language-based content display.
+
 Superman:
-      Superman should accesses the Action Bar and seamlessly performs all actions—joining live sessions, scheduling and viewing recordings, attempting exams, inviting others, engaging in groups, checking in-person events, reading guidelines, and accessing help—without any delays or errors.
-      Superman should be able to load All features instantly, navigate correctly, and enable the user to complete tasks efficiently in a smooth end-to-end experience.
+      Superman should access, navigate, and play recordings (English/Hindi) with correct resume, controls, progress indicators, and chapter/verse mapping.
+      Superman should access end-to-end recording experience including download, quality selection, mini-player behavior, and accurate display of session details.
 
 Macro:
-  Scenario: Join Live before scheduled time 
-    Given Current time is before session time
-    When User clicks on Join Live button
-    Then Bottom sheet should be displayed
-    And Session name should be shown in English and Hindi
-  Scenario: Join Live at scheduled time
-    Given Current time is equal to session time
-    When User clicks on Join Live button
-    Then User should be navigated to Live Session
-    And Live session should load successfully
-  Scenario: Join Live after scheduled time
-    Given Current time is after session time
-    Then User should be navigated to Live Session
-    And Streaming should start without issues
-  Scenario: Join Live exactly at session start
-    Given Current time matches session start time exactly
-    When User clicks Join Live
-    Then User should directly enter Live Session
-    And No bottom sheet should be displayed
-  Scenario: Rapid clicks on Join Live
-    Given User is on main page
-    When User clicks Join Live multiple times quickly
-    Then Only one navigation should happen
-    And App should not crash
-  Scenario: Navigate to Schedule page
-    Given User is on main page
-    When User clicks on Schedule button
-    Then User should be navigated to Schedule page
-    And Page should load successfully
-  Scenario: View session categories
-    Given User is on Schedule page
-    When Page is loaded
-    Then English Sessions should be visible
-    And Hindi Sessions should be visible
-  Scenario: View calendar months
-    Given User is on Schedule page
-    When User views calendar
-    Then Current month schedule should be displayed
-    And Previous month schedule should be accessible
-    And Sessions Short form should be displayed below the dates.
-  Scenario: Scroll and view session description 
-    Given User is on Schedule page
-    When User scrolls down
-    Then Session descriptions should be visible
-    And Content should load properly
-  Scenario: Month switching 
-    Given User switches between months
-    When User selects previous or next month
-    Then Correct session data should be displayed
-    And No incorrect sessions should appear
-  Scenario: No sessions available
-    Given No sessions exist
-    When User opens Schedule page
-    Then Calender dates should not be assigned with Sessions.
-  Scenario: Select date with assigned session
-    Given User is on Schedule page
-    And Date has assigned sessions
-    When User selects the date
-    Then Selected date should be highlighted with colour
-    And Assigned sessions should be displayed below the calendar
-  Scenario: Select same date again 
-    Given User has selected a date
-    When User selects the same date again
-    Then Date should remain highlighted
-    And Sessions should remain unchanged
-  Scenario: User select Next month 
-    Given User is on Schedule page
-    When User selects the next month arrow twice on calendar
-    Then Only next month calendar should be visible.
- Scenario: Navigate to Recordings page
+  Scenario: Navigate to Recordings page
     Given User is on Main Page
     When User clicks on Recordings option
     Then User should be navigated to Recordings page
