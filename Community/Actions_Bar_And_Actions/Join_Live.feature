@@ -19,8 +19,17 @@ Macro:
     And Live session should load successfully
   Scenario: Join Live after scheduled time
     Given Current time is after session time
+    When User clicks on Join Live button
     Then User should be navigated to Live Session
     And Streaming should start without issues
+  Scenario: Join Live after scheduled time
+    Given Current time is after session time
+    When User Scroll the main feed
+    Then Live seesion Started CTA should be displayed at top of the page 
+  Scenario: Join Live after scheduled time
+    Given Current time is after session time and user scrolling main feed page.
+    When Live seesion Started CTA at top of the page is clicked
+    Then Live session should load successfully
   Scenario: Join Live exactly at session start
     Given Current time matches session start time exactly
     When User clicks Join Live
