@@ -1,10 +1,11 @@
-@main_feed
+@actions_bar
 Feature: Join Live
 
-   A quick-access navigation panel that includes actions like Join Live, Schedule, Recordings, Exam, Invite, Groups, Attend In-Person, Gita Mission Guidelines, and Help, allowing users to easily access sessions, activities, and support features.
+   Validates the Join Live functionality by ensuring correct navigation, UI behavior, and streaming experience based on session timing (before, at, and after start), including CTA visibility and seamless user entry into live sessions.
+
 Superman:
-      Superman should accesses the Action Bar and seamlessly performs all actions—joining live sessions, scheduling and viewing recordings, attempting exams, inviting others, engaging in groups, checking in-person events, reading guidelines, and accessing help—without any delays or errors.
-      Superman should be able to load All features instantly, navigate correctly, and enable the user to complete tasks efficiently in a smooth end-to-end experience.
+      Superman should be able to join live sessions seamlessly before, at, and after scheduled time with correct UI behavior (bottom sheet/CTA/navigation).
+      Superman should be able to join Verify live session loads reliably with proper access control, error handling, and smooth streaming across different scenarios and edge conditions.
 
 Macro:
   Scenario: Join Live before scheduled time 
