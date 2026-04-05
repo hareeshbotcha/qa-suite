@@ -167,6 +167,11 @@ Macro:
     And Missing correct option should deduct 2 marks
     And Skipped question should deduct 2 marks
 
+  Scenario: User should not be able to start same exam after submission
+    Given User is on the exam page
+    When User submits the exam
+    Then User should not be able to start the same exam again
+
   Scenario: Dynamic exam description update
     Given Exam schedule changes
     When User views description
