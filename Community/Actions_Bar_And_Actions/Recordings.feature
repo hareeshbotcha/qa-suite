@@ -232,7 +232,6 @@ Macro:
     And Partial file should be removed    
 
 Sanity:
-
   Scenario: Join Live without internet
     Given No internet connection
     When User clicks Join Live

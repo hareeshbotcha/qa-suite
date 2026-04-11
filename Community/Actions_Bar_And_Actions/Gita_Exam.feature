@@ -14,17 +14,17 @@ Macro:
     Then User should be navigated to Gita Exam page
     And English and Hindi Exams options should be visible
   Scenario: View exam levels for selected language
-    Given User selects English or Hindi
+    Given User selects English or Hindi Exam
     When Exam page loads
     Then Easy (Novice) exam should be visible
     And Tough (Beginner) exam should be visible
   Scenario: Verify language mapping
-    Given User selects English exam
+    Given User selects English exam (Novice or Beginner)
     When Exam loads
     Then Questions should be from English sessions
     And Content should be in English
   Scenario: Verify language mapping
-    Given User selects Hindi exam
+    Given User selects Hindi exam (Novice or Beginner)
     When Exam loads
     Then Questions should be from Hindi sessions
     And Content should be in Hindi    
@@ -39,7 +39,7 @@ Macro:
     Then Full description should be visible
     And On clicking Show Less description should collapse
   Scenario: Open Acharya Prashant framework link
-    Given Framework link is available
+    Given Framework link is available on exam description page
     When User clicks on the link
     Then User should be navigated to respective language framework page
     And Page should load successfully
@@ -52,7 +52,7 @@ Macro:
     Given User is on Exam page
     When User clicks on Past Exams button
     Then Past Exams page should be displayed
-    And Exams history should be visible
+    And Exams history should be visible with date
   Scenario: Navigate back from Past Exams
     Given User is on Past Exams page
     When User clicks back button
@@ -63,6 +63,18 @@ Macro:
     When User clicks on View Answer Sheet
     Then User should be navigated to exam attempt page
     And Correct Answers marked as right and Wrong Ansers  marked with "X"
+  Scenario: Scroll in View answer sheet from past exams
+    Given Past exam has result
+    When User clicks on View Answer Sheet
+    Then User should be navigated to exam attempt page
+    And User should be able to scroll to any question.
+  Scenario: View answer sheet from past exams
+    Given Past exam has result
+    When User clicks on View Answer Sheet
+    Then User should be navigated to exam attempt page
+    And Correct Answers marked as right and Wrong Ansers  marked with "X" 
+    And Exam attempt page should show the date of the exam    
+    And The Syllabuus link of the attempeted exam should be displayed
   Scenario: Back navigation from answer sheet
     Given User is on Answer Sheet page
     When User clicks back button
